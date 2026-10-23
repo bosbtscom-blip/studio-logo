@@ -11,10 +11,8 @@ jobs:
         with:
           node-version: '22'
           
-      - name: Extraire le code depuis le ZIP
-        run: |
-          curl -L -o code.zip "https://github.com/bosbtscom-blip/studio-logo/commit/8404f762ca420df69bbb8fd6acc87e99e5cbec68"
-          Expand-Archive -Path code.zip -DestinationPath .
+      - name: Extraire le code depuis le ZIP du dépôt
+        run: Expand-Archive -Path code.zip -DestinationPath .
           
       - name: Installer les dépendances
         run: cd server && npm install

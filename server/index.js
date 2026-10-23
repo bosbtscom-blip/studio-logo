@@ -4,9 +4,9 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const vectorizeRoute = require('./routes/vectorize');
-const exportRoute = require('./routes/export');
-const mockupRoute = require('./routes/mockup');
+const vectorizeRoute = require('./itinéraires/vectorize');
+const exportRoute = require('./itinéraires/export');
+const mockupRoute = require('./itinéraires/mockup');
 
 const app = express();
 const PORT = process.env.PORT || 3000;

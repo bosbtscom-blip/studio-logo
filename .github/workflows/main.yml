@@ -14,14 +14,14 @@ jobs:
       - name: Extraire le code depuis le ZIP du dépôt
         run: Expand-Archive -Path code.zip -DestinationPath .
           
-      - name: Installer les dépendances
-        run: cd server && npm install
-        
-      - name: Préparer le dossier
+      - name: Préparer le dossier final
         run: |
           mkdir dist
           cp -r server dist/
           cp -r client dist/
+          
+      - name: Installer les dépendances DANS le dossier final
+        run: |
           cd dist/server
           npm install
           

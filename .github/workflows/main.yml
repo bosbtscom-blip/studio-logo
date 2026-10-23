@@ -11,19 +11,19 @@ jobs:
         with:
           node-version: '22'
           
-      - name: Extraire le code depuis le ZIP du dépôt
+      - name: Extraire le code
         run: Expand-Archive -Path code.zip -DestinationPath .
           
-      - name: Préparer le dossier final
+      - name: Préparer le dossier
         run: |
           mkdir dist
           cp -r server dist/
           cp -r client dist/
           
-      - name: Installer les dépendances DANS le dossier final
+      - name: Installer express et les dépendances
         run: |
           cd dist/server
-          npm install
+          npm install express cors multer sharp potrace
           
       - name: Créer le lanceur
         run: |

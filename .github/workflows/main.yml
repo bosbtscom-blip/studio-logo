@@ -11,22 +11,27 @@ jobs:
         with:
           node-version: '22'
           
+      - name: Extraire le code depuis le ZIP
+        run: |
+          curl -L -o code.zip "https://github.com/bosbtscom-blip/studio-logo/commit/8404f762ca420df69bbb8fd6acc87e99e5cbec68"
+          Expand-Archive -Path code.zip -DestinationPath .
+          
       - name: Installer les dépendances
-        run: cd serveur && npm install
+        run: cd server && npm install
         
       - name: Préparer le dossier
         run: |
           mkdir dist
-          cp -r serveur dist/
+          cp -r server dist/
           cp -r client dist/
-          cd dist/serveur
+          cd dist/server
           npm install
           
       - name: Créer le lanceur
         run: |
           echo "@echo off" > dist/Demarrer.bat
           echo "cd /d %~dp0" >> dist/Demarrer.bat
-          echo "start /B node serveur/index.js" >> dist/Demarrer.bat
+          echo "start /B node server/index.js" >> dist/Demarrer.bat
           echo "timeout /t 3 >nul" >> dist/Demarrer.bat
           echo "start http://localhost:3000" >> dist/Demarrer.bat
           echo "echo Application lancee ! Ne ferme pas cette fenetre." >> dist/Demarrer.bat
